@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStock Registro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="user-role">Vendedor</div>
+    </div>
+
+    <div class="content-wrapper">
+        <h2 class="section-title">Registrar usuario</h2>
+        <div class="card user-card">
+            <button class="collapse-toggle" id="userCollapseToggle">
+                <span class="material-icons arrow-down" id="collapseArrow">
+                    arrow_drop_down
+                </span>
+            </button>
+
+            <div class="card-content user-content" id="userCollapseContent">
+                <div class="form-group-row">
+                    <div class="field-container">
+                        <label for="cedula-user">Cédula</label>
+                        <input type="text" id="cedula-user" placeholder="Número">
+                    </div>
+                    <div class="field-container">
+                        <label for="nombre-user">Nombre</label>
+                        <input type="text" id="nombre-user" placeholder="Nombre">
+                    </div>
+                    <div class="field-container">
+                        <label for="celular-user">Celular</label>
+                        <input type="text" id="celular-user" placeholder="Celular">
+                    </div>
+                    <div class="field-container">
+                        <label for="correo-user">Correo</label>
+                        <input type="email" id="correo-user" placeholder="Correo">
+                    </div>
+                </div>
+                <button class="btn-register">Registrar</button>
+            </div>
+        </div>
+
+        <h2 class="section-title order-title">Registrar orden</h2>
+        <div class="card order-card">
+            <div class="form-group-row-order">
+                <div class="field-container fixed-width">
+                    <label for="cedula-order">Cédula</label>
+                    <input type="text" id="cedula-order" placeholder="Número">
+                </div>
+
+                <div class="order-items-container" id="orderItemsContainer">
+                    <div class="order-item">
+                        <div class="field-container description-field">
+                            <label for="descripcion-1">Descripción</label>
+                            <textarea id="descripcion-1" placeholder="Descripción"></textarea>
+                        </div>
+                        <div class="field-container quantity-field">
+                            <label for="cantidad-1">Cantidad</label>
+                            <input type="number" id="cantidad-1" placeholder="Número">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-controls">
+                    <button class="btn-control plus" id="addOrderItem">+</button>
+                    <button class="btn-control minus" id="removeOrderItem">-</button>
+                </div>
+                <button class="btn-register-order">Registrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 SmartStock
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

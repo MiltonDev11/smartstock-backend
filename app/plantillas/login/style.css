@@ -1,0 +1,211 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e8cb9a; /* Color de fondo general de la primera imagen */
+    color: #333;
+    overflow: hidden; /* Evita barras de desplazamiento si el contenido es un poco más grande */
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-card {
+    background-color: #F8F8F8; /* Fondo de la tarjeta blanca */
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 380px; /* Ancho fijo para la tarjeta */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Georgia', serif; /* Simula un tipo de letra elegante */
+    font-size: 3em; /* Ajusta el tamaño de la fuente para que se parezca a la imagen */
+    color: #2F2F2F;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc; /* Línea inferior del input */
+    padding-bottom: 5px;
+}
+
+.input-group img {
+    width: 20px; /* Tamaño del icono */
+    height: 20px;
+    margin-right: 10px;
+    filter: invert(40%); /* Oscurece el icono para que sea visible */
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 8px 0;
+    font-size: 1.1em;
+    background: none;
+    color: #555;
+}
+
+.input-group input::placeholder {
+    color: #888;
+}
+
+.btn-ingresar {
+    background-color: #8e582c; /* Color del botón violeta */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 40px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    width: 70%; /* Ancho del botón */
+}
+
+.btn-ingresar:hover {
+    background-color: #6d3c11;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    margin: 30px 0;
+}
+
+.forgot-password {
+    color: #ab9680; /* Color verde del enlace */
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #7e634e;
+}
+
+.footer {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 0.8em;
+    color: #555;
+    box-sizing: border-box;
+}
+
+/* Modal para "Olvidaste tu contraseña" */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+}
+
+.modal-content {
+    background-color: #F8F8F8; /* Fondo blanco del modal */
+    padding: 30px;
+    border-radius: 20px;
+    width: 300px; /* Ancho fijo para el modal */
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #FF6347; /* Color rojo para la 'x' */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #e55336;
+}
+
+.modal-content h2 {
+    font-size: 1.8em;
+    color: #2F2F2F;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.modal-content input[type="text"] {
+    width: calc(100% - 30px); /* Ajusta el ancho para el padding */
+    padding: 15px;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #EFEFEF;
+    font-size: 1.1em;
+    box-sizing: border-box;
+    text-align: center; /* Centra el texto del placeholder */
+}
+
+.modal-content input[type="text"]::placeholder {
+    color: #888;
+}
+
+.btn-validar {
+    background-color: #8e582c; /* Color del botón violeta */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 70%;
+}
+
+.btn-validar:hover {
+    background-color: #6d3c11;
+}

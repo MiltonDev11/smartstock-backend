@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStock Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <h1 class="logo">SmartStock</h1>
+            <div class="input-group">
+                <label for="usuario"><img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="Usuario icon"/></label>
+                <input type="text" id="usuario" placeholder="Usuario">
+            </div>
+            <div class="input-group">
+                <label for="password"><img src="https://img.icons8.com/ios-glyphs/30/000000/lock--v1.png" alt="Contraseña icon"/></label>
+                <input type="password" id="password" placeholder="Contraseña">
+            </div>
+            <button class="btn-ingresar">INGRESAR</button>
+            <div class="separator"></div>
+            <a href="#" class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModal">&times;</span>
+            <h2>Cédula</h2>
+            <input type="text" id="cedula" placeholder="Ingresa tu cédula">
+            <button class="btn-validar">Validar</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2025 SmartStock
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
