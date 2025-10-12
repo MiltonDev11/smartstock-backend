@@ -4,6 +4,7 @@ from sqlalchemy import text
 from app.db.session import SessionLocal
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
 from app.api import users, password_reset, auth
 
 
@@ -23,10 +24,6 @@ def get_db():
     finally:
         db.close()
 
-@app.get("/ping")
-def ping(db: Session = Depends(get_db)):
-    try:
-        db.execute(text("SELECT 1"))
-        return {"status": "ok", "message": "Conexión exitosa con PostgreSQL"}
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
+@app.get("/")
+def root():
+    return RedirectResponse(url="/login")

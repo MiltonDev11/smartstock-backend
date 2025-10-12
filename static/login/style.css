@@ -177,7 +177,7 @@ body {
     font-weight: bold;
 }
 
-.modal-content input[type="text"] {
+.modal-content input[type="password"] {
     width: calc(100% - 30px); /* Ajusta el ancho para el padding */
     padding: 15px;
     margin-bottom: 25px;
@@ -189,7 +189,7 @@ body {
     text-align: center; /* Centra el texto del placeholder */
 }
 
-.modal-content input[type="text"]::placeholder {
+.modal-content input[type="password"]::placeholder {
     color: #888;
 }
 
