@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Form, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from app.db.session import SessionLocal
 from app.models.user import User
@@ -8,6 +8,7 @@ from app.core.email_config import conf
 from fastapi_mail import MessageType
 from fastapi import HTTPException
 from app.core.security import hash_password
+from app.core.token_manager import generate_token, verify_token
 
 router = APIRouter()
 
@@ -36,18 +37,26 @@ async def password_reset_request(cedula: str = Form(...), db: Session = Depends(
     partes = correo.split("@")
     censurado = partes[0][:3] + "***@" + "***" + partes[1][-4:]
 
+    user_id_raw = getattr(user, "id")
+    try:
+        user_id = int(user_id_raw)
+    except Exception:
+        raise HTTPException(status_code=500, detail="Error interno: id del usuario inválido")
+    token = generate_token(user_id)
+    user.last_reset_token = token
+    db.commit()
+    reset_link = f"http://127.0.0.1:8000/reset-password?token={token}"
+
     # Crear el mensaje
     mensaje = MessageSchema(
         subject="Restablecer contraseña - SmartStock",
         recipients=[correo],
         body=f"""
         <h2>Hola {user.nombre},</h2>
-        <p>Recibimos una solicitud para restablecer tu contraseña.</p>
-        <p>Haz clic en el siguiente enlace para continuar:</p>
-        <a href="http://127.0.0.1:8000/reset-password/{user.id}" 
-            style="display:inline-block; background-color:#007bff; color:white; padding:10px 20px; border-radius:5px; text-decoration:none;">
-            Restablecer contraseña
-        </a>
+        <p>Hemos recibimos una solicitud para restablecer tu contraseña.</p>
+        <p>Haz clic en el siguiente enlace para crear tu nueva contraseña:</p>
+        <a href="{reset_link}" > {reset_link}"></a>
+        <p> Este enlace expirará en 15 minutos. </p>
         <p>Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
         """,
         subtype=MessageType.html
@@ -66,8 +75,22 @@ async def password_reset_request(cedula: str = Form(...), db: Session = Depends(
         status_code=200
     )
 
-@router.get("/reset-password/{user_id}", response_class=HTMLResponse)
-def reset_password_form(user_id: int):
+@router.get("/reset-password", response_class=HTMLResponse)
+def reset_password_form(request: Request, token: str, db: Session = Depends(get_db)):
+    # Verificar firma y expiración
+    try:
+        user_id = verify_token(token)
+    except ValueError as e:
+        return HTMLResponse(f"<h3 style='color:red; text-align:center;'>{str(e)}</h3>", status_code=400)
+
+    # Buscar usuario y comprobar que token coincide con el guardado
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        return HTMLResponse("<h3 style='color:red; text-align:center;'>Usuario no encontrado.</h3>", status_code=404)
+
+    if not user.last_reset_token or user.last_reset_token != token:
+        return HTMLResponse("<h3 style='color:red; text-align:center;'>Lo siento, este enlace ha expirado.</h3>", status_code=400)
+
     return f"""
     <html>
         <head>
@@ -76,7 +99,7 @@ def reset_password_form(user_id: int):
         <body style="font-family: Arial; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh;">
             <div style="background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px;">
                 <h2 style="text-align: center;">Nueva Contraseña</h2>
-                <form method="post" action="/reset-password/{user_id}">
+                <form method="post" action="/reset-password?token={token}">
                     <input type="password" id="new_password" name="new_password" placeholder="Nueva contraseña" required
                         style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc;">
                     <button type="submit" 
@@ -89,22 +112,28 @@ def reset_password_form(user_id: int):
     </html>
     """
 
-@router.post("/reset-password/{user_id}")
-def reset_password(user_id: int, new_password: str = Form(...), db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
+@router.post("/reset-password", response_class=HTMLResponse)
+def reset_password(token: str, new_password: str = Form(...), db: Session = Depends(get_db)):
+    try:
+        user_id = verify_token(token)
+    except ValueError as e:
+        return HTMLResponse(f"<h3 style='color:red;'>{str(e)}</h3>", status_code=400)
 
+    user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-    print("NUEVA CONTRASEÑA:", new_password)
-    user.password_hash = hash_password(new_password) # type: ignore
+    # Verificar que token coincida con el almacenado (único uso)
+    if not user.last_reset_token or user.last_reset_token != token:
+        return HTMLResponse("<h3 style='color:red;'>Lo siento, este token ya se usó o es inválido.</h3>", status_code=400)
+
+    # Actualizar contraseña
+    user.password_hash = hash_password(new_password)  # type: ignore
+    # Invalidar token (marcar usado)
+    user.last_reset_token = None
     db.commit()
 
     return HTMLResponse(
-        """
-        <div style='background-color: #d1e7dd; color: #0f5132; padding: 10px; border-radius: 6px; text-align: center;'>
-            Contraseña actualizada correctamente. Ya puedes cerrar esta ventana y volver a iniciar sesión.
-        </div>
-        """,
+        "<div style='background-color:#d1e7dd; color:#0f5132; padding:10px; border-radius:6px; text-align:center;'>Contraseña actualizada correctamente.</div>",
         status_code=200
     )
