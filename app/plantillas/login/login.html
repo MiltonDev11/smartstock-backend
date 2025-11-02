@@ -10,15 +10,17 @@
     <div class="container">
         <div class="login-card">
             <h1 class="logo">SmartStock</h1>
-            <div class="input-group">
-                <label for="usuario"><img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="Usuario icon"/></label>
-                <input type="text" id="usuario" placeholder="Usuario">
-            </div>
-            <div class="input-group">
-                <label for="password"><img src="https://img.icons8.com/ios-glyphs/30/000000/lock--v1.png" alt="Contraseña icon"/></label>
-                <input type="password" id="password" placeholder="Contraseña">
-            </div>
-            <button class="btn-ingresar">INGRESAR</button>
+            <form method="post" action="/login">
+                <div class="input-group">
+                    <label for="usuario"><img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="Usuario icon"/></label>
+                    <input type="text" name="usuario" id="usuario" placeholder="Cédula">
+                </div>
+                <div class="input-group">
+                    <label for="password"><img src="https://img.icons8.com/ios-glyphs/30/000000/lock--v1.png" alt="Contraseña icon"/></label>
+                    <input type="password" name="password" id="password" placeholder="Contraseña">
+                </div>
+                <button type="submit" class="btn-ingresar">INGRESAR</button>
+            </form>
             <div class="separator"></div>
             <a href="#" class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
         </div>

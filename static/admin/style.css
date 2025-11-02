@@ -1,0 +1,129 @@
+/* ================================
+   SMARTSTOCK ADMIN - STYLE.CSS
+   (incluye ajustes para collapse persistente)
+   ================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html,body { height:100%; font-family:'Inter',sans-serif; background:#fcfbf9; color:#3b2f25; }
+
+/* LAYOUT */
+.app-shell { display:flex; height:100vh; overflow:hidden; background:#f9f8f6; }
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(to bottom,#f5ede3,#e6d5c3);
+  border-right: 1px solid #d6c7b6;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding: 1.2rem 1rem;
+  z-index: 999;
+  transition: width .28s ease;
+}
+
+/* BRAND */
+.brand { display:flex; align-items:center; gap:.6rem; margin-bottom:1.2rem; }
+.logo { background:#c9a26b; color:#fff; font-weight:700; border-radius:10px; width:35px; height:35px; display:flex; align-items:center; justify-content:center; font-size:.9rem; }
+.name { font-weight:600; font-size:1.05rem; color:#5b4632; }
+
+/* ===== COLLAPSE BUTTON =====
+   Lo movemos un poco hacia dentro (margin-left) para que no quede justo en la esquina.
+   También lo hacemos más visible y con rotación del SVG (no cambiamos el icono).
+*/
+.collapse-btn {
+  background:#d4b28e;
+  border:none;
+  color:#fff;
+  border-radius:8px;
+  width:40px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:3px;        /* <-- menos pegado al borde */
+  margin-bottom:12px;
+  cursor:pointer;
+  transition: background .2s ease, transform .2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.collapse-btn:hover { background:#b9956d; }
+
+/* Lucide genera un <svg> en lugar del <i> — apuntamos al svg */
+.collapse-btn svg { width:18px; height:18px; stroke: #fff; transition: transform .28s ease; transform-origin: 50% 50%; }
+
+/* ===== MENU ===== */
+.menu { list-style:none; padding:0; flex:1; }
+.menu-btn {
+  width:100%; background:none; border:none; text-align:left;
+  padding:.8rem 1rem; border-radius:10px; cursor:pointer;
+  font-size:.95rem; color:#5b4632; display:flex; align-items:center; gap:.7rem;
+  transition: background .18s ease, color .18s ease;
+}
+.menu-btn:hover { background:#e2d2bc; }
+.menu-btn.active { background:#d4b28e; color:#fff; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+
+/* compact view (colapsado) */
+.sidebar.collapsed { width:85px; }
+.sidebar.collapsed .name,
+.sidebar.collapsed .menu-btn span { display:none; }
+.sidebar.collapsed .sidebar-footer { font-size:0.65rem; }
+.main-area.collapsed { margin-left:85px; }
+
+/* key: rotación de la flecha en el estado colapsado */
+.sidebar.collapsed .collapse-btn svg { transform: rotate(180deg); }
+
+/* MAIN AREA */
+.main-area {
+  flex:1; margin-left:240px; overflow-y:auto; padding:2rem 2.5rem; min-height:100vh;
+  box-sizing:border-box; background:#fcfbf9; transition: margin-left .28s ease;
+}
+
+/* TOPBAR */
+.topbar { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2rem; }
+.page-title { font-size:1.6rem; font-weight:700; color:#4a392b; }
+.page-sub { font-size:.85rem; color:#857768; }
+.controls { display:flex; align-items:center; gap:1rem; position:relative; }
+
+/* NOTIFICATIONS */
+.notif-btn { position:relative; font-size:1.4rem; cursor:pointer; }
+.notif-dot { position:absolute; top:-4px; right:-2px; width:8px; height:8px; background:red; border-radius:50%; }
+.notif-dropdown { position:absolute; top:2.2rem; right:0; width:290px; background:#fff; border:1px solid #e0d4c7; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.1); z-index:2000; }
+
+/* CARDS */
+.container-card { background:#fff; border-radius:16px; padding:1.5rem; margin-bottom:2rem; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+.card-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+.card-head h3 { font-size:1.1rem; color:#4a392b; }
+.search-input { padding:.6rem .9rem; border:1px solid #ddd2c3; border-radius:8px; width:230px; outline:none; }
+
+/* FORMS / TABLES / BUTTONS (estilos estándar) */
+.form-row{ display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1rem; }
+.form-field{ flex:1; min-width:180px; }
+label{ display:block; margin-bottom:.3rem; font-weight:600; font-size:.9rem; color:#4a392b; }
+input,select{ width:100%; padding:.6rem .8rem; border:1px solid #ddd2c3; border-radius:8px; background:#fcfbf9; font-size:.9rem; outline:none; transition:border-color .15s ease; }
+input:focus,select:focus{ border-color:#c9a26b; }
+.btn{ padding:.55rem 1.1rem; border-radius:8px; font-weight:600; cursor:pointer; border:none; transition:all .15s ease; }
+.btn.primary{ background:#c9a26b; color:#fff; } .btn.ghost{ background:transparent; border:1px solid #c9a26b; color:#5b4632; }
+
+/* TABLES */
+.table-wrap{ overflow-x:auto; }
+.table{ width:100%; border-collapse:collapse; margin-top:1rem; }
+.table th,.table td{ padding:.8rem 1rem; border-bottom:1px solid #eee3d4; font-size:.9rem; text-align:left; }
+.table th{ background:#f7f1ea; font-weight:600; }
+.table tr:hover{ background:#fdfaf7; }
+
+/* ICONS */
+i[data-lucide], svg[data-lucide] { width:20px; height:20px; stroke-width:2; }
+.admin-badge i{ stroke:#4a392b; }
+.notif-btn i{ stroke:#4a392b; transition:transform .18s ease; }
+.notif-btn:hover i{ transform:rotate(-10deg); }
+
+/* Responsive */
+@media (max-width:950px){
+  .sidebar{ width:70px; align-items:center; }
+  .menu-btn span, .name { display:none; }
+  .main-area { margin-left:70px; }
+}

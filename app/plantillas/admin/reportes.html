@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes | SmartStock Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/admin/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <button class="collapse-btn" id="collapseBtn"><i data-lucide="chevron-left"></i></button>
+      <div class="brand">
+        <div class="logo">SS</div>
+        <span class="name">SmartStock</span>
+      </div>
+
+      <ul class="menu">
+          <li><button class="menu-btn active" onclick="location.href='/admin/dashboard'"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/solicitudes'"><i data-lucide="clipboard-list"></i><span>Solicitudes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/gestion'"><i data-lucide="users"></i><span>Gestión</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/materiales'"><i data-lucide="box"></i><span>Materiales</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/reportes'"><i data-lucide="bar-chart-2"></i><span>Reportes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/stock'"><i data-lucide="package"></i><span>Stock</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/supervisar'"><i data-lucide="check-circle"></i><span>Supervisar</span></button></li>
+      </ul>
+
+      <div class="sidebar-footer">SmartStock © 2025</div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="title-col">
+          <h1 class="page-title">Reportes</h1>
+          <span class="page-sub">Generar y descargar informes</span>
+        </div>
+
+        <div class="controls">
+          <!-- Campanita -->
+          <div class="notif-btn" id="notifBtn" title="Ver avisos">
+            <span class="notif-dot" id="notifDot"></span>
+            <i data-lucide="bell"></i>
+          </div>
+        
+          <!-- Dropdown de notificaciones -->
+          <div class="notif-dropdown" id="notifDropdown" hidden>
+            <div class="notif-header">
+              <strong>Avisos recientes</strong>
+              <div>
+                <button class="btn ghost" id="clearNotifs">Limpiar</button>
+                <button class="btn ghost" id="closeNotif">Cerrar</button>
+              </div>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        
+          <!-- Usuario -->
+          <div class="admin-badge">
+            <i data-lucide="user"></i>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENIDO -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Descargar reportes</h3>
+        </div>
+
+        <form id="formReportes">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="tipoReporte">Tipo de reporte</label>
+              <select id="tipoReporte">
+                <option value="">Seleccione</option>
+                <option value="semanal">Semanal</option>
+                <option value="mensual">Mensual</option>
+                <option value="anual">Anual</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="categoriaReporte">Categoría</label>
+              <select id="categoriaReporte">
+                <option value="">Seleccione</option>
+                <option value="todos">Todos</option>
+                <option value="ingresos">Ingresos</option>
+                <option value="materiales">Materiales</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Descargar reporte</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- HISTORIAL DE REPORTES DESCARGADOS -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Historial de reportes descargados</h3>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Reporte</th>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Fecha</th>
+                <th>Descargado por</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>R001</td>
+                <td>Semanal</td>
+                <td>Ingresos</td>
+                <td>2025-10-10</td>
+                <td>Administrador</td>
+              </tr>
+              <tr>
+                <td>R002</td>
+                <td>Mensual</td>
+                <td>Materiales</td>
+                <td>2025-09-30</td>
+                <td>Administrador</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/admin/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

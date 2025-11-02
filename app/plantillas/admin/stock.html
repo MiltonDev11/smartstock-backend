@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock | SmartStock Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/admin/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <button class="collapse-btn" id="collapseBtn"><i data-lucide="chevron-left"></i></button>
+      <div class="brand">
+        <div class="logo">SS</div>
+        <span class="name">SmartStock</span>
+      </div>
+
+      <ul class="menu">
+          <li><button class="menu-btn active" onclick="location.href='/admin/dashboard'"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/solicitudes'"><i data-lucide="clipboard-list"></i><span>Solicitudes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/gestion'"><i data-lucide="users"></i><span>Gestión</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/materiales'"><i data-lucide="box"></i><span>Materiales</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/reportes'"><i data-lucide="bar-chart-2"></i><span>Reportes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/stock'"><i data-lucide="package"></i><span>Stock</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/supervisar'"><i data-lucide="check-circle"></i><span>Supervisar</span></button></li>
+      </ul>
+
+      <div class="sidebar-footer">SmartStock © 2025</div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="title-col">
+          <h1 class="page-title">Stock</h1>
+          <span class="page-sub">Control de materiales y productos</span>
+        </div>
+
+        <div class="controls">
+          <!-- Campanita -->
+          <div class="notif-btn" id="notifBtn" title="Ver avisos">
+            <span class="notif-dot" id="notifDot"></span>
+            <i data-lucide="bell"></i>
+          </div>
+        
+          <!-- Dropdown de notificaciones -->
+          <div class="notif-dropdown" id="notifDropdown" hidden>
+            <div class="notif-header">
+              <strong>Avisos recientes</strong>
+              <div>
+                <button class="btn ghost" id="clearNotifs">Limpiar</button>
+                <button class="btn ghost" id="closeNotif">Cerrar</button>
+              </div>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        
+          <!-- Usuario -->
+          <div class="admin-badge">
+            <i data-lucide="user"></i>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENIDO -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Buscar en el stock</h3>
+          <input class="search-input" placeholder="Buscar por nombre o ID">
+        </div>
+      </section>
+
+      <!-- STOCK DE MATERIALES -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Stock de materiales</h3>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Material</th>
+                <th>Material</th>
+                <th>Cantidad</th>
+                <th>Fecha de registro</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>M001</td>
+                <td>Madera pino</td>
+                <td>25</td>
+                <td>2025-10-14</td>
+                <td><span class="small">Normal</span></td>
+              </tr>
+              <tr>
+                <td>M002</td>
+                <td>Tornillo 5mm</td>
+                <td>3</td>
+                <td>2025-10-15</td>
+                <td><span class="small" style="color:#e14b4b;">Bajo stock</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- STOCK DE PRODUCTOS -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Stock de productos terminados</h3>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Producto</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Fecha de ingreso</th>
+                <th>Días en stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>P001</td>
+                <td>Mesa rústica</td>
+                <td>2</td>
+                <td>2025-09-15</td>
+                <td>31 días</td>
+              </tr>
+              <tr>
+                <td>P002</td>
+                <td>Silla tapizada</td>
+                <td>5</td>
+                <td>2025-10-01</td>
+                <td>15 días</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/admin/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

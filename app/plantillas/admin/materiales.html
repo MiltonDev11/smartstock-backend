@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materiales | SmartStock Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/admin/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <button class="collapse-btn" id="collapseBtn"><i data-lucide="chevron-left"></i></button>
+      <div class="brand">
+        <div class="logo">SS</div>
+        <span class="name">SmartStock</span>
+      </div>
+
+      <ul class="menu">
+          <li><button class="menu-btn active" onclick="location.href='/admin/dashboard'"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/solicitudes'"><i data-lucide="clipboard-list"></i><span>Solicitudes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/gestion'"><i data-lucide="users"></i><span>Gestión</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/materiales'"><i data-lucide="box"></i><span>Materiales</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/reportes'"><i data-lucide="bar-chart-2"></i><span>Reportes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/stock'"><i data-lucide="package"></i><span>Stock</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/supervisar'"><i data-lucide="check-circle"></i><span>Supervisar</span></button></li>
+      </ul>
+
+
+      <div class="sidebar-footer">SmartStock © 2025</div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="title-col">
+          <h1 class="page-title">Materiales</h1>
+          <span class="page-sub">Gestión y control de materiales</span>
+        </div>
+
+        <div class="controls">
+          <!-- Campanita -->
+          <div class="notif-btn" id="notifBtn" title="Ver avisos">
+            <span class="notif-dot" id="notifDot"></span>
+            <i data-lucide="bell"></i>
+          </div>
+        
+          <!-- Dropdown de notificaciones -->
+          <div class="notif-dropdown" id="notifDropdown" hidden>
+            <div class="notif-header">
+              <strong>Avisos recientes</strong>
+              <div>
+                <button class="btn ghost" id="clearNotifs">Limpiar</button>
+                <button class="btn ghost" id="closeNotif">Cerrar</button>
+              </div>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        
+          <!-- Usuario -->
+          <div class="admin-badge">
+            <i data-lucide="user"></i>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENIDO -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Lista de materiales</h3>
+          <input class="search-input" placeholder="Buscar material por nombre o ID">
+        </div>
+
+        <!-- Tabla de materiales -->
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Material</th>
+                <th>Material</th>
+                <th>Unidad</th>
+                <th>Precio unitario</th>
+                <th>Cantidad</th>
+                <th>Unidad de medida</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>M001</td>
+                <td>Madera pino</td>
+                <td>kg</td>
+                <td>$30.000</td>
+                <td>25</td>
+                <td>kg</td>
+              </tr>
+              <tr>
+                <td>M002</td>
+                <td>Tornillo 5mm</td>
+                <td>unidad</td>
+                <td>$200</td>
+                <td>8</td>
+                <td>unidad</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- REGISTRAR MATERIAL -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Registrar nuevo material</h3>
+        </div>
+
+        <form id="formRegistrarMaterial">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nombreMaterial">Nombre</label>
+              <input type="text" id="nombreMaterial" placeholder="Ej: Tornillo 5mm">
+            </div>
+
+            <div class="form-field">
+              <label for="medidaMaterial">Medida</label>
+              <input type="text" id="medidaMaterial" placeholder="Ej: 5mm">
+            </div>
+
+            <div class="form-field">
+              <label for="unidadMaterial">Unidad de medida</label>
+              <select id="unidadMaterial">
+                <option value="">Seleccione</option>
+                <option value="unidad">Unidad</option>
+                <option value="kg">Kilogramo</option>
+                <option value="m">Metro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="precioMaterial">Precio unitario</label>
+              <input type="number" id="precioMaterial" placeholder="Ej: 200">
+            </div>
+
+            <div class="form-field">
+              <label for="descripcionMaterial">Descripción (opcional)</label>
+              <input type="text" id="descripcionMaterial" placeholder="Ej: Tornillo galvanizado para madera">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn ghost">Limpiar</button>
+            <button type="submit" class="btn primary">Registrar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- INGRESAR STOCK -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Ingresar stock de materiales</h3>
+        </div>
+
+        <form id="formIngresarStock">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="idMaterialStock">ID Material</label>
+              <input type="text" id="idMaterialStock" placeholder="Ej: M002">
+            </div>
+
+            <div class="form-field">
+              <label for="stockInicial">Stock inicial</label>
+              <input type="number" id="stockInicial" placeholder="Ej: 10">
+            </div>
+
+            <div class="form-field">
+              <label for="stockIngresar">Stock a ingresar</label>
+              <input type="number" id="stockIngresar" placeholder="Ej: 25">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="proveedorMaterial">Proveedor</label>
+              <input type="text" id="proveedorMaterial" placeholder="Ej: Ferretería La 14">
+            </div>
+
+            <div class="form-field">
+              <label for="nombreMaterialStock">Nombre del material</label>
+              <input type="text" id="nombreMaterialStock" placeholder="Ej: Tornillo 5mm">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn ghost">Limpiar</button>
+            <button type="submit" class="btn primary">Ingresar stock</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/admin/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

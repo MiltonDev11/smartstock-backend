@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión | SmartStock Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/admin/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+    <div class="app-shell">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <button class="collapse-btn" id="collapseBtn"><i data-lucide="chevron-left"></i></button>
+      <div class="brand">
+          <div class="logo">SS</div>
+          <span class="name">SmartStock</span>
+      </div>
+      <ul class="menu">
+          <li><button class="menu-btn active" onclick="location.href='/admin/dashboard'"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/solicitudes'"><i data-lucide="clipboard-list"></i><span>Solicitudes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/gestion'"><i data-lucide="users"></i><span>Gestión</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/materiales'"><i data-lucide="box"></i><span>Materiales</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/reportes'"><i data-lucide="bar-chart-2"></i><span>Reportes</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/stock'"><i data-lucide="package"></i><span>Stock</span></button></li>
+          <li><button class="menu-btn" onclick="location.href='/admin/supervisar'"><i data-lucide="check-circle"></i><span>Supervisar</span></button></li>
+      </ul>
+      <div class="sidebar-footer">SmartStock © 2025</div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="title-col">
+          <h1 class="page-title">Gestión</h1>
+          <span class="page-sub">Control de usuarios y compras</span>
+        </div>
+
+        <div class="controls">
+          <!-- Campanita -->
+          <div class="notif-btn" id="notifBtn" title="Ver avisos">
+            <span class="notif-dot" id="notifDot"></span>
+            <i data-lucide="bell"></i>
+          </div>
+        
+          <!-- Dropdown de notificaciones -->
+          <div class="notif-dropdown" id="notifDropdown" hidden>
+            <div class="notif-header">
+              <strong>Avisos recientes</strong>
+              <div>
+                <button class="btn ghost" id="clearNotifs">Limpiar</button>
+                <button class="btn ghost" id="closeNotif">Cerrar</button>
+              </div>
+            </div>
+            <ul class="notif-list" id="notifList"></ul>
+          </div>
+        
+          <!-- Usuario -->
+          <div class="admin-badge">
+            <i data-lucide="user"></i>
+            <span>Administrador</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENIDO -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Usuarios registrados</h3>
+          <input class="search-input" placeholder="Buscar usuario por nombre o ID">
+        </div>
+
+        <!-- Tabla de usuarios -->
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID Usuario</th>
+                <th>Nombre</th>
+                <th>Cédula/NIT</th>
+                <th>Celular</th>
+                <th>Correo</th>
+                <th>Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>U001</td>
+                <td>Carlos Pérez</td>
+                <td>1025459874</td>
+                <td>3124567890</td>
+                <td>carlos@empresa.com</td>
+                <td>Admin</td>
+              </tr>
+              <tr>
+                <td>U002</td>
+                <td>Laura Gómez</td>
+                <td>1012335789</td>
+                <td>3145687999</td>
+                <td>laura@empresa.com</td>
+                <td>Empleado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- REGISTRAR NUEVO USUARIO -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Registrar nuevo usuario</h3>
+        </div>
+
+        <form id="formRegistrarUsuario">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nombreUsuario">Nombre</label>
+              <input type="text" id="nombreUsuario" placeholder="Ej: Juan Torres">
+            </div>
+
+            <div class="form-field">
+              <label for="cedulaUsuario">Cédula/NIT</label>
+              <input type="number" id="cedulaUsuario" placeholder="Ej: 1002321456">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="celularUsuario">Celular</label>
+              <input type="number" id="celularUsuario" placeholder="Ej: 3124567890">
+            </div>
+
+            <div class="form-field">
+              <label for="correoUsuario">Correo</label>
+              <input type="email" id="correoUsuario" placeholder="Ej: usuario@correo.com">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="reset" class="btn ghost">Limpiar</button>
+            <button type="submit" class="btn primary">Registrar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- COMPRAS DE CLIENTES -->
+      <section class="container-card">
+        <div class="card-head">
+          <h3>Compras de clientes</h3>
+          <input class="search-input" placeholder="Buscar compra por cliente o producto">
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>No. Venta</th>
+                <th>Producto</th>
+                <th>Costo</th>
+                <th>Cantidad</th>
+                <th>Cédula/NIT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>V001</td>
+                <td>Silla moderna</td>
+                <td>$250.000</td>
+                <td>2</td>
+                <td>1012335789</td>
+              </tr>
+              <tr>
+                <td>V002</td>
+                <td>Mesa de centro</td>
+                <td>$380.000</td>
+                <td>1</td>
+                <td>1025459874</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/admin/app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
