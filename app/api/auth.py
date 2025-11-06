@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, Form, Depends, HTTPException
+from fastapi import APIRouter, Request, Form, Depends, HTTPException, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from app.db.session import get_db
@@ -31,6 +31,15 @@ def login_post(
             "<div style='color:red; text.align: center;'> Contraseña incorrecta</div>",
             status_code=401
         )
+    
+    response = RedirectResponse(url=f"/{user.role}", status_code=303)
+    response.set_cookie(
+        key="user_role",
+        value = user.role,
+        httponly = True,
+        samesite = "lax"
+    )
+    return response
     
     if user.role == "admin":
         return RedirectResponse(url="/admin", status_code=303)
