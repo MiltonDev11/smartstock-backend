@@ -32,7 +32,8 @@ def login_post(
             status_code=401
         )
     
-    response = RedirectResponse(url=f"/{user.role}", status_code=303)
+    redirect_url = f"/{user.role}"
+    response = RedirectResponse(url=redirect_url, status_code=303)
     response.set_cookie(
         key="user_role",
         value = user.role,
@@ -40,13 +41,8 @@ def login_post(
         samesite = "lax"
     )
     return response
-    
-    if user.role == "admin":
-        return RedirectResponse(url="/admin", status_code=303)
-    elif user.role == "vendedor":
-        return RedirectResponse(url="/vendedor", status_code=303)
-    else:
-        return HTMLResponse(
-            "<div style='color:red; text-align: center;'> Rol no autorizado</div>", 
-            status_code=403
-        )
+
+@router.get("/logout")
+def logout(response: Response):
+    response = RedirectResponse(url="/login")
+    response.delete_cookie("user_role")

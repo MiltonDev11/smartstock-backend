@@ -61,9 +61,22 @@
           </div>
         
           <!-- Usuario -->
-          <div class="admin-badge">
+          <div class="admin-badge" id="adminBadge" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
             <i data-lucide="user"></i>
-            <span>Administrador</span>
+            <span class="admin-name">Administrador</span>
+                    
+            <!-- dropdown (oculto por defecto) -->
+            <div class="user-menu" id="userMenu" hidden>
+              <div class="user-menu-inner">
+                <div class="user-info">
+                  <strong>Administrador</strong>
+                  <div class="user-email">admin@empresa.com</div>
+                </div>
+                <div class="user-menu-actions">
+                  <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>

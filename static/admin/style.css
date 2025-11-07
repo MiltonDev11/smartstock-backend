@@ -109,15 +109,129 @@ input:focus,select:focus{ border-color:#c9a26b; }
 .btn.primary{ background:#c9a26b; color:#fff; } .btn.ghost{ background:transparent; border:1px solid #c9a26b; color:#5b4632; }
 
 /* TABLES */
-.table-wrap{ overflow-x:auto; }
-.table{ width:100%; border-collapse:collapse; margin-top:1rem; }
-.table th,.table td{ padding:.8rem 1rem; border-bottom:1px solid #eee3d4; font-size:.9rem; text-align:left; }
-.table th{ background:#f7f1ea; font-weight:600; }
-.table tr:hover{ background:#fdfaf7; }
+.table-wrap {
+  max-height: 220px; /* suficiente para 6 filas aprox */
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Mejora visual */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.table tbody tr:hover {
+  background-color: #f0f8ff;
+  transition: 0.2s;
+}
+
 
 /* ICONS */
 i[data-lucide], svg[data-lucide] { width:20px; height:20px; stroke-width:2; }
-.admin-badge i{ stroke:#4a392b; }
+/* ---------- Admin user badge & dropdown ---------- */
+.admin-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 180ms ease, transform 120ms ease;
+}
+.admin-badge i { width: 20px; height: 20px; }
+.admin-badge .admin-name {
+  font-weight: 600;
+  color: #2f2f2f;
+  font-size: 14px;
+}
+
+/* hover / focus */
+.admin-badge:hover,
+.admin-badge:focus {
+  background-color: rgba(0,0,0,0.03);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* Dropdown (hidden by default; we use class .open) */
+.user-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(17,17,17,0.12);
+  overflow: hidden;
+  transform-origin: top right;
+  opacity: 0;
+  transform: translateY(-8px) scale(.98);
+  transition: opacity 180ms ease, transform 180ms cubic-bezier(.2,.9,.2,1);
+  pointer-events: none;
+  z-index: 1200;
+}
+
+/* "open" state: visible */
+.user-menu.open {
+  opacity: 1;
+  transform: translateY(6px) scale(1);
+  pointer-events: auto;
+}
+
+/* inner content */
+.user-menu-inner {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.user-info strong { display:block; font-weight:700; color:#333; }
+.user-info .user-email { font-size:12px; color:#777; }
+
+/* actions area */
+.user-menu-actions { display:flex; justify-content:flex-end; }
+
+/* logout button */
+.btn-logout {
+  background: #e84c3d;         /* rojo */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight:600;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232,76,61,0.18);
+}
+
+/* small touch / accessibility */
+.admin-badge:focus .user-name,
+.btn-logout:focus { outline: 2px solid rgba(0,123,255,0.12); outline-offset: 2px; }
+
+/* When sidebar collapsed ensure dropdown still visible (if needed) */
+.sidebar.collapsed .user-menu { right: -8px; }
+
 .notif-btn i{ stroke:#4a392b; transition:transform .18s ease; }
 .notif-btn:hover i{ transform:rotate(-10deg); }
 

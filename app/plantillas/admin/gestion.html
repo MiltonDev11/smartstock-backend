@@ -59,9 +59,22 @@
           </div>
         
           <!-- Usuario -->
-          <div class="admin-badge">
+          <div class="admin-badge" id="adminBadge" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
             <i data-lucide="user"></i>
-            <span>Administrador</span>
+            <span class="admin-name">Administrador</span>
+                    
+            <!-- dropdown (oculto por defecto) -->
+            <div class="user-menu" id="userMenu" hidden>
+              <div class="user-menu-inner">
+                <div class="user-info">
+                  <strong>Administrador</strong>
+                  <div class="user-email">admin@empresa.com</div>
+                </div>
+                <div class="user-menu-actions">
+                  <button id="logoutBtn" class="btn-logout">Cerrar sesión</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -70,12 +83,12 @@
       <section class="container-card">
         <div class="card-head">
           <h3>Usuarios registrados</h3>
-          <input class="search-input" placeholder="Buscar usuario por nombre o ID">
+          <input id="buscarUsuario" class="search-input" placeholder="Buscar usuario por cédula o ID">
         </div>
 
         <!-- Tabla de usuarios -->
         <div class="table-wrap">
-          <table class="table">
+          <table class="table" id="tablaUsuarios">
             <thead>
               <tr>
                 <th>ID Usuario</th>
@@ -84,25 +97,11 @@
                 <th>Celular</th>
                 <th>Correo</th>
                 <th>Rol</th>
+                <th>Estado</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>U001</td>
-                <td>Carlos Pérez</td>
-                <td>1025459874</td>
-                <td>3124567890</td>
-                <td>carlos@empresa.com</td>
-                <td>Admin</td>
-              </tr>
-              <tr>
-                <td>U002</td>
-                <td>Laura Gómez</td>
-                <td>1012335789</td>
-                <td>3145687999</td>
-                <td>laura@empresa.com</td>
-                <td>Empleado</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -187,6 +186,7 @@
   </div>
 
   <script src="/static/admin/app.js"></script>
+  <script src="/static/admin/admin-users.js"></script>
   <script>
     lucide.createIcons();
   </script>

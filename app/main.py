@@ -5,15 +5,14 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse, HTMLResponse
 from app.api import users, password_reset, auth
 from app.api import admin  # type: ignore
-from fastapi.responses import HTMLResponse
-from starlette.requests import Request
-
+from app.api import admin_users
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="app/plantillas")
 
+app.include_router(admin_users.router)
 app.include_router(admin.router)
 app.include_router(users.router)
 app.include_router(password_reset.router)
@@ -44,7 +43,7 @@ def vendedor_page(request: Request):
         return RedirectResponse(url="/login")
     return templates.TemplateResponse("vendedor/vendedor.html", {"request": request})
 
-@app.get("logout")
+@app.get("/logout")
 def logout():
     response = RedirectResponse(url="/login")
     response.delete_cookie("user_role")

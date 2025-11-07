@@ -121,3 +121,74 @@ function markActiveMenu() {
     else btn.classList.remove('active');
   });
 }
+
+/* ---------- USER BADGE DROPDOWN + LOGOUT ---------- */
+function setupUserMenu() {
+  const badge = document.getElementById('adminBadge');
+  const menu  = document.getElementById('userMenu');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (!badge || !menu) return;
+
+  // Helper to open/close
+  function openMenu() {
+    menu.classList.add('open');
+    menu.removeAttribute('hidden');
+    badge.setAttribute('aria-expanded', 'true');
+    try { if (window.lucide) window.lucide.createIcons(); } catch(e) {}
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    menu.setAttribute('hidden', '');
+    badge.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu() {
+    if (menu.classList.contains('open')) closeMenu();
+    else openMenu();
+  }
+
+  // Toggle on badge click / Enter / Space
+  badge.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+  badge.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleMenu();
+    } else if (e.key === 'Escape') {
+      closeMenu();
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (ev) => {
+    if (!badge.contains(ev.target) && !menu.contains(ev.target)) {
+      if (menu.classList.contains('open')) closeMenu();
+    }
+  });
+
+  // Close with ESC
+  document.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Escape') closeMenu();
+  });
+
+  // Logout action: call /logout then redirect to /login
+  logoutBtn?.addEventListener('click', async (ev) => {
+    ev.preventDefault();
+    try {
+      // Usamos GET /logout (según tu ruta) y redirigimos al login.
+      const resp = await fetch('/logout', { method: 'GET', credentials: 'same-origin' });
+      // aunque la respuesta pueda ser un redirect, forzamos ir a login
+      window.location.href = '/login';
+    } catch (err) {
+      // si fallo la petición, igual redirigimos para evitar quedar "pegado"
+      window.location.href = '/login';
+    }
+  });
+}
+
+// integrarlo en el flujo de carga (si ya tienes DOMContentLoaded)
+window.addEventListener('DOMContentLoaded', () => {
+  try { setupUserMenu(); } catch (e) { /* no bloquear si error */ }
+});

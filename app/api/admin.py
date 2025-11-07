@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Depends
+from sqlalchemy.orm import Session
+from app.db.session import get_db
+from app.models.user import User
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -33,3 +36,23 @@ def admin_stock(request: Request):
 @router.get("/supervisar", response_class=HTMLResponse)
 def admin_supervisar(request: Request):
     return templates.TemplateResponse("admin/supervisar.html", {"request": request})
+
+@router.get("/usuarios")
+def listar_usuarios(db: Session = Depends(get_db)):
+    usuarios = (
+        db.query(User)
+        .filter(User.role.in_(["vendedor", "cliente"]))
+        .all()
+    )
+    resultado = []
+    for u in usuarios:
+        resultado.append({
+            "id": f"IDU{u.id}",
+            "nombre": u.nombre,
+            "cedula": u.cedula,
+            "celular": u.celular,
+            "correo": u.correo,
+            "role": u.role.capitalize(),
+            "estado": "Vinculado" if u.is_active else "Desvinculado"
+        })
+    return resultado
