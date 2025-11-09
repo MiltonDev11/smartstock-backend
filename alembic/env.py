@@ -4,6 +4,7 @@ from alembic import context
 
 from app.db.session import Base
 from app.models.user import User
+from app.db import base
 from app.core.config import settings
 
 # Configuración de logging

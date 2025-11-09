@@ -95,29 +95,16 @@
               <tr>
                 <th>ID Material</th>
                 <th>Material</th>
+                <th>Medida</th>
                 <th>Unidad</th>
                 <th>Precio unitario</th>
+                <th>Marca</ht>
                 <th>Cantidad</th>
-                <th>Unidad de medida</th>
+                <th>Ingreso</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>M001</td>
-                <td>Madera pino</td>
-                <td>kg</td>
-                <td>$30.000</td>
-                <td>25</td>
-                <td>kg</td>
-              </tr>
-              <tr>
-                <td>M002</td>
-                <td>Tornillo 5mm</td>
-                <td>unidad</td>
-                <td>$200</td>
-                <td>8</td>
-                <td>unidad</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -132,22 +119,26 @@
         <form id="formRegistrarMaterial">
           <div class="form-row">
             <div class="form-field">
-              <label for="nombreMaterial">Nombre</label>
-              <input type="text" id="nombreMaterial" placeholder="Ej: Tornillo 5mm">
+              <label for="nombreMaterial">Mterial</label>
+              <input type="text" id="nombreMaterial" placeholder="Tornillo">
             </div>
 
             <div class="form-field">
               <label for="medidaMaterial">Medida</label>
-              <input type="text" id="medidaMaterial" placeholder="Ej: 5mm">
+              <input type="text" id="medidaMaterial" placeholder="5 o 120x190">
             </div>
 
             <div class="form-field">
               <label for="unidadMaterial">Unidad de medida</label>
               <select id="unidadMaterial">
                 <option value="">Seleccione</option>
-                <option value="unidad">Unidad</option>
-                <option value="kg">Kilogramo</option>
-                <option value="m">Metro</option>
+                <option value="m">Metros</option>
+                <option value="m2">Metro Cuadrado</option>
+                <option value="mm">Milimetros</option>
+                <option value="cm">Centimetros</option>
+                <option value="cm3">Centimetros cubicos</option>
+                <option value="l">Litros</option>
+                <option value="ml">Mililitros</option>
               </select>
             </div>
           </div>
@@ -155,12 +146,15 @@
           <div class="form-row">
             <div class="form-field">
               <label for="precioMaterial">Precio unitario</label>
-              <input type="number" id="precioMaterial" placeholder="Ej: 200">
+              <input type="number" id="precioMaterial" placeholder="200">
             </div>
-
             <div class="form-field">
-              <label for="descripcionMaterial">Descripción (opcional)</label>
-              <input type="text" id="descripcionMaterial" placeholder="Ej: Tornillo galvanizado para madera">
+              <label for="marcaMaterial">Marca</label>
+              <input type="text" id="marcaMaterial" placeholder="Ingrese la marca">
+            </div>
+            <div class="form-field">
+              <label for="cantidadMaterial">Cantidad</label>
+              <input type="text" id="cantidadMaterial" placeholder="5">
             </div>
           </div>
 
@@ -217,6 +211,7 @@
   </div>
 
   <script src="/static/admin/app.js"></script>
+  <script src="/static/admin/admin-materiales.js"></script>
   <script>
     lucide.createIcons();
   </script>

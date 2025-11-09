@@ -4,6 +4,9 @@ from app.db.session import get_db
 from app.models.user import User
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from app.models.material import Material
+from app.esquemas.material import MaterialCreate, MaterialOut
+from fastapi.responses import JSONResponse
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
@@ -20,6 +23,48 @@ def vendedor_gestion(request: Request):
 @router.get("/materiales", response_class=HTMLResponse)
 def admin_materiales(request: Request):
     return templates.TemplateResponse("admin/materiales.html", {"request": request})
+
+# ✅ ENDPOINTS API
+@router.post("/registrar-material", response_model=MaterialOut)
+def registrar_material(material: MaterialCreate, db: Session = Depends(get_db)):
+    nuevo = Material(
+        material=material.material,
+        medida=material.medida,
+        unidad=material.unidad,
+        precio_unitario=material.precio_unitario,
+        marca=material.marca,
+        cantidad=material.cantidad
+    )
+    db.add(nuevo)
+    db.commit()
+    db.refresh(nuevo)
+    return MaterialOut(
+        id=nuevo.id,
+        material=nuevo.material,
+        medida=nuevo.medida,
+        unidad=nuevo.unidad,
+        precio_unitario=nuevo.precio_unitario,
+        marca=nuevo.marca,
+        cantidad=nuevo.cantidad,
+        ingreso=nuevo.calcular_ingreso()
+    )
+
+@router.get("/api/materiales", response_model=list[MaterialOut])
+def obtener_materiales(db: Session = Depends(get_db)):
+    materiales = db.query(Material).all()
+    return [
+        MaterialOut(
+            id=m.id,
+            material=m.material,
+            medida=m.medida,
+            unidad=m.unidad,
+            precio_unitario=m.precio_unitario,
+            marca=m.marca,
+            cantidad=m.cantidad,
+            ingreso=m.calcular_ingreso()
+        )
+        for m in materiales
+    ]
 
 @router.get("/reportes", response_class=HTMLResponse)
 def admin_reportes(request: Request):
