@@ -49,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <label for="cantidad-${itemCount}">Cantidad</label>
                 <input type="number" id="cantidad-${itemCount}" placeholder="Número">
             </div>
+            <div class="field-container quantity-field">
+                <label for="precio-${itemCount}">Precio</label>
+                <input type="number" id="precio-${itemCount}" placeholder="Número">
+            </div>
         `;
         return newItem;
     }

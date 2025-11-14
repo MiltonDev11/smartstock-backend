@@ -24,7 +24,6 @@ def vendedor_gestion(request: Request):
 def admin_materiales(request: Request):
     return templates.TemplateResponse("admin/materiales.html", {"request": request})
 
-# ✅ ENDPOINTS API
 @router.post("/registrar-material", response_model=MaterialOut)
 def registrar_material(material: MaterialCreate, db: Session = Depends(get_db)):
     nuevo = Material(
@@ -87,6 +86,7 @@ def listar_usuarios(db: Session = Depends(get_db)):
     usuarios = (
         db.query(User)
         .filter(User.role.in_(["vendedor", "cliente"]))
+        .order_by(User.id.asc())
         .all()
     )
     resultado = []

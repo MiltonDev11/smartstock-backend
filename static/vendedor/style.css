@@ -165,16 +165,9 @@ body {
 }
 
 .order-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* Descripción, Cantidad, Precio */
     gap: 20px;
-}
-
-.description-field {
-    flex: 3; /* Más ancho para la descripción */
-}
-
-.quantity-field {
-    flex: 1; /* Más angosto para la cantidad */
 }
 
 .order-controls {

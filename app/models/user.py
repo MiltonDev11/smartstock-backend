@@ -14,7 +14,7 @@ class User(Base):
     nombre: Mapped[str] = mapped_column(String, nullable=False)
     celular: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     correo: Mapped[str] = mapped_column(String, unique=True, index=True, nullable=False)
-    password_hash: Mapped[str] = mapped_column(String, nullable=False)
+    password_hash: Mapped[str] = mapped_column(String, nullable=True)
     role: Mapped[str] = mapped_column(String, nullable=False)  # admin, vendedor, trabajador
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now())

@@ -82,11 +82,6 @@
 
       <!-- CONTENIDO -->
       <section class="container-card">
-        <div class="card-head">
-          <h3>Listado de solicitudes</h3>
-          <button class="btn primary">+ Nueva solicitud</button>
-        </div>
-
         <!-- Buscador y filtros -->
         <div class="form-row" style="margin-bottom:12px;">
           <div class="form-field">
@@ -98,9 +93,9 @@
             <label for="filtroEstado">Estado</label>
             <select id="filtroEstado">
               <option value="todas">Todas</option>
-              <option value="pendientes">Pendientes</option>
+              <option value="pendiente">Pendientes</option>
               <option value="proceso">En proceso</option>
-              <option value="completadas">Completadas</option>
+              <option value="completado">Completado</option>
             </select>
           </div>
         </div>
@@ -119,38 +114,59 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>#00123</td>
-                <td>Carlos Mendoza</td>
-                <td>Armario modular</td>
-                <td>2025-10-14</td>
-                <td><span class="small">Pendiente</span></td>
-                <td><button class="btn ghost">Ver</button></td>
-              </tr>
-              <tr>
-                <td>#00124</td>
-                <td>Laura Rodríguez</td>
-                <td>Mesa comedor 6 puestos</td>
-                <td>2025-10-12</td>
-                <td><span class="small">En proceso</span></td>
-                <td><button class="btn ghost">Ver</button></td>
-              </tr>
-              <tr>
-                <td>#00125</td>
-                <td>Julián Pérez</td>
-                <td>Cabecera tapizada</td>
-                <td>2025-10-10</td>
-                <td><span class="small">Completada</span></td>
-                <td><button class="btn ghost">Ver</button></td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
       </section>
+
+      <h3 style="margin-top:40px;">Productos de solicitudes</h3>
+      <div class="table-wrap">
+        <table class="table" id="tablaItems">
+          <thead>
+            <tr>
+              <th>ID Producto</th>
+              <th>ID Solicitud</th>
+              <th>Descripción</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="padding: 16px; margin-bottom: 20px;">
+        <h3 style="margin-bottom: 12px;">Actualizar estado de una solicitud</h3>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="estadoIdInput">ID de la solicitud</label>
+            <input type="number" id="estadoIdInput" placeholder="Ej: 15">
+          </div>
+        
+          <div class="form-field">
+            <label for="estadoSelect">Nuevo estado</label>
+            <select id="estadoSelect">
+              <option value="seleccionar">seleccionar</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="en_proceso">En proceso</option>
+              <option value="completado">Completado</option>
+            </select>
+          </div>
+        </div>
+      
+        <button class="btn" id="btnCambiarEstado" style="margin-top: 10px;">
+          Actualizar estado
+        </button>
+      </div>
     </main>
   </div>
 
   <script src="/static/admin/app.js"></script>
+  <script src="/static/admin/admin-solicitudes.js"></script>
   <script>
     lucide.createIcons();
   </script>
