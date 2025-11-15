@@ -1,4 +1,9 @@
-# app/api/admin_users.py
+"""Módulo `app.api.admin_users`.
+
+Provee endpoints que permiten al administrador crear usuarios (vendedores)
+y enviarles credenciales por correo. Incluye utilidades para generar
+contraseñas seguras.
+"""
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr, Field

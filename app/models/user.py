@@ -1,3 +1,9 @@
+"""Módulo `app.models.user`.
+
+Define el modelo de datos `User` y el esquema Pydantic `UserCreate` usado
+para la creación de usuarios. Contiene mapeos de columnas y restricciones
+de la tabla `users`.
+"""
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String, Integer, Boolean, DateTime
 from sqlalchemy.sql import func

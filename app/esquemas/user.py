@@ -1,3 +1,8 @@
+"""Módulo `app.esquemas.user`.
+
+Define esquemas Pydantic usados para validar y serializar datos de usuarios
+en las rutas de la API (entrada y salida).
+"""
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime

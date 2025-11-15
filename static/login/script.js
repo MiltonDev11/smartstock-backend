@@ -1,3 +1,9 @@
+/*
+    Módulo: static/login/script.js
+    Descripción: Script para la página de login. Maneja el modal de
+    "olvidé mi contraseña", la validación de cédula y la comunicación
+    con el endpoint `/password-reset`.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     const forgotPasswordLink = document.getElementById('forgotPasswordLink');
     const forgotPasswordModal = document.getElementById('forgotPasswordModal');

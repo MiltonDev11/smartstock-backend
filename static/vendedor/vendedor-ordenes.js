@@ -1,3 +1,8 @@
+/*
+    Módulo: static/vendedor/vendedor-ordenes.js
+    Descripción: Lógica para crear órdenes/solicitudes desde la vista del
+    vendedor. Recolecta ítems del formulario y llama a `/vendedor/crear-solicitud`.
+*/
 document.addEventListener("DOMContentLoaded", () => {
 
     console.log("vendedor-ordenes.js cargado correctamente");

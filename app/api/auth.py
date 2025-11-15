@@ -1,3 +1,8 @@
+"""Módulo `app.api.auth`.
+
+Contiene los endpoints relacionados con autenticación: mostrar la página
+de login, procesar inicio de sesión y cerrar sesión.
+"""
 from fastapi import APIRouter, Request, Form, Depends, HTTPException, Response
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session

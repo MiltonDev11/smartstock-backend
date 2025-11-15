@@ -1,3 +1,8 @@
+"""Módulo `app.routers.user`.
+
+Define rutas relacionadas con el registro y gestión básica de usuarios
+expuestas como router independiente en la aplicación.
+"""
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.esquemas.user import UserCreate

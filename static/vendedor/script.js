@@ -1,3 +1,9 @@
+/*
+    Módulo: static/vendedor/script.js
+    Descripción: Funciones de interfaz para pantallas del vendedor: manejo
+    de colapsos, duplicado/eliminado de campos en formularios de orden,
+    y utilidades de UI relacionadas.
+*/
 document.addEventListener('DOMContentLoaded', function() {
     // -------------------------------------------------------------------
     // 1. Funcionalidad Colapsar/Expandir (Registrar usuario)

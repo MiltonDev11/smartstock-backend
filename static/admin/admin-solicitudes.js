@@ -1,3 +1,9 @@
+/*
+    Módulo: static/admin/admin-solicitudes.js
+    Descripción: Lógica para listar y visualizar solicitudes en el panel
+    administrativo. Carga la tabla, genera modales con detalles y permite
+    cambiar estados de solicitudes.
+*/
 document.addEventListener("DOMContentLoaded", () => {
 
     const tbody = document.querySelector(".table tbody");

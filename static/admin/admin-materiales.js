@@ -1,3 +1,10 @@
+/*
+  Módulo: static/admin/admin-materiales.js
+  Descripción: Funciones de frontend para la gestión de materiales:
+  - Cargar y renderizar la lista de materiales
+  - Registrar nuevos materiales mediante POST a /admin/registrar-material
+  - Filtrado y mejoras de UI (scroll limitado)
+*/
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('formRegistrarMaterial');
   const tablaBody = document.querySelector('.table tbody');

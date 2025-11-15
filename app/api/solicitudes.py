@@ -1,4 +1,9 @@
-# app/api/solicitudes.py
+"""Módulo `app.api.solicitudes`.
+
+Define endpoints para crear y administrar solicitudes desde la perspectiva
+del vendedor y del administrador. Incluye rutas para crear solicitudes,
+listar, obtener y cambiar estado.
+"""
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db

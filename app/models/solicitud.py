@@ -1,4 +1,11 @@
-# app/models/solicitud.py
+"""Módulo `app.models.solicitud`.
+
+Define los modelos `Solicitud` y `SolicitudItem` y el enum de estado
+(`SolicitudStatus`) para representar solicitudes de materiales.
+
+Incluye relaciones entre solicitudes y sus ítems, así como propiedades
+útiles como `subtotal` en `SolicitudItem`.
+"""
 from sqlalchemy import Integer, String, DateTime, ForeignKey, Float, Enum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func

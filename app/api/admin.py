@@ -1,3 +1,8 @@
+"""Módulo `app.api.admin`.
+
+Define las rutas del panel de administración para mostrar plantillas
+HTML y endpoints de gestión de materiales y usuarios.
+"""
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy.orm import Session
 from app.db.session import get_db

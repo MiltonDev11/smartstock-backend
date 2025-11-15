@@ -1,3 +1,8 @@
+"""Módulo `app.models.material`.
+
+Define el modelo `Material` que representa materiales en stock, incluyendo
+sus atributos principales y métodos auxiliares como `calcular_ingreso`.
+"""
 from sqlalchemy import Integer, String, Float
 from sqlalchemy.orm import Mapped, mapped_column
 from app.db.session import Base

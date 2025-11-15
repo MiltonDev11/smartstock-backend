@@ -1,3 +1,8 @@
+/*
+  Módulo: static/vendedor/vendedor-solicitudes.js
+  Descripción: Carga y muestra las solicitudes (lista y detalle) para la
+  vista administrativa de solicitudes y permite cambiar estados.
+*/
 document.addEventListener("DOMContentLoaded", () => {
 
   // ============================================================

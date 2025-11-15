@@ -1,4 +1,12 @@
-# app/api/users.py
+"""Módulo `app.api.users`.
+
+Contiene las rutas (endpoints) relacionadas con la gestión de usuarios:
+- crear usuarios
+- solicitudes de restablecimiento de contraseña
+
+Este módulo documenta de forma concisa la intención de cada función y mantiene
+comentarios en español coherentes con el estilo usado en `app/main.py`.
+"""
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
@@ -15,6 +23,12 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 @router.post("/", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    """
+    Crea un nuevo usuario en la base de datos.
+
+    - Verifica si el correo ya está registrado y lanza un `HTTPException` si es así.
+    - Hashea la contraseña y guarda el nuevo usuario en la DB.
+    """
     # Verificar si el correo ya existe
     db_user = db.query(User).filter(User.correo == user.correo).first()
     if db_user:
@@ -39,6 +53,12 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/password-reset/request", response_class=HTMLResponse)
 def request_password_reset(cedula: str = Form(...), db: Session = Depends(get_db)):
+    """
+    Solicita el restablecimiento de contraseña para un usuario identificado por su cédula.
+
+    - Si el usuario existe, simula el envío de un correo y devuelve HTML informativo.
+    - Si no existe, devuelve un HTML con mensaje de error.
+    """
     user = db.query(User).filter(User.cedula == cedula).first()
 
     if user:

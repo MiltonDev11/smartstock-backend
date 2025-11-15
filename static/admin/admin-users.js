@@ -1,3 +1,10 @@
+/*
+  Módulo: static/admin/admin-users.js
+  Descripción: Lógica del frontend para la página de gestión de usuarios.
+  - Carga y renderiza usuarios en la tabla
+  - Permite registrar usuarios mediante el endpoint /admin/register-user
+  - Aplica filtros y control de UI
+*/
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('formRegistrarUsuario');
   const tablaBody = document.querySelector('#tablaUsuarios tbody');

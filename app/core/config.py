@@ -1,5 +1,11 @@
+"""Módulo `app.core.config`.
+
+Centraliza la configuración de la aplicación usando Pydantic `BaseSettings`.
+Las variables pueden cargarse desde un fichero `.env`.
+"""
 from pydantic_settings import BaseSettings
 from pydantic import SecretStr
+
 
 class Settings(BaseSettings):
     DATABASE_URL: str = ""
@@ -18,5 +24,6 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+
 
 settings = Settings()

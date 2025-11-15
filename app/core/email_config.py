@@ -1,3 +1,9 @@
+"""Módulo `app.core.email_config`.
+
+Configura la conexión para el envío de correos usando `fastapi-mail`.
+Exporta la variable `conf` con la configuración construida a partir de
+las settings de la aplicación.
+"""
 from fastapi_mail import ConnectionConfig
 from app.core.config import settings
 

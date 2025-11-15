@@ -1,3 +1,9 @@
+/*
+  Módulo: static/admin/app.js
+  Descripción: Lógica común para la interfaz administrativa. Gestiona
+  notificaciones, persistencia del sidebar (collapsed), marcado del
+  menú activo y el menú de usuario (logout). Documentado en español.
+*/
 // ==================================================
 // SMARTSTOCK ADMIN - APP.JS (persistencia collapse + notifs + active menu)
 // ==================================================

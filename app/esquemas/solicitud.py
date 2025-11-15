@@ -1,4 +1,7 @@
-# app/esquemas/solicitud.py
+"""Módulo `app.esquemas.solicitud`.
+
+Contiene los esquemas Pydantic para crear y retornar solicitudes y sus ítems.
+"""
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime

@@ -1,3 +1,8 @@
+"""Módulo `app.api.vendedor`.
+
+Rutas y vistas destinadas al rol `vendedor`, incluyendo dashboard y
+registro de clientes.
+"""
 from fastapi import APIRouter, Request, Depends
 from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse

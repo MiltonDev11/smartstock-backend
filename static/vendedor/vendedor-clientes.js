@@ -1,3 +1,8 @@
+/*
+    Módulo: static/vendedor/vendedor-clientes.js
+    Descripción: Maneja el registro de clientes desde la interfaz del
+    vendedor (envío al endpoint `/vendedor/registrar-cliente`).
+*/
 document.addEventListener("DOMContentLoaded", () => {
     const btnRegistrar = document.querySelector(".btn-register");
 

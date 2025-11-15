@@ -1,3 +1,10 @@
+"""Módulo `app.api.password_reset`.
+
+Gestiona el flujo de restablecimiento de contraseñas:
+- solicitud de restablecimiento (envío de correo con token)
+- formulario de restablecimiento
+- actualización de la contraseña
+"""
 from fastapi import APIRouter, Depends, Form, Request
 from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session

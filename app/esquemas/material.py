@@ -1,3 +1,7 @@
+"""Módulo `app.esquemas.material`.
+
+Esquemas Pydantic para crear y representar materiales (entrada y salida).
+"""
 from pydantic import BaseModel
 
 class MaterialCreate(BaseModel):
